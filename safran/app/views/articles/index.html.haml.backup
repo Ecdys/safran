@@ -1,0 +1,84 @@
+%h1 Listing des articles
+
+%form{ :method => :get, :action => articles_path }
+  %fieldset
+    %input{ :placeholder => "Votre recherche", :size => 80 , :type => :search, :name => :q, :value => params[:q] }
+    %input{ :type => :submit, :value => 'Rechercher' }
+  %fieldset
+    %legend Distributeur
+    - @facets[:distributeur].each_pair do |tag, counter|
+      %label
+        %input{ :type => :checkbox, :value => tag, :name => 'distributeur', :checked => (params[:distributeur] && params[:distributeur].include?(tag) ? :checked : nil) }
+        = tag
+        %small= counter
+  %fieldset
+    %legend Fabricant
+    - @facets[:fabricant].each_pair do |tag, counter|
+      %label
+        %input{ :type => :checkbox, :value => tag, :name => 'fabricant', :checked => (params[:fabricant] && params[:fabricant].include?(tag) ? :checked : nil) }
+        = tag
+        %small= counter
+  %fieldset
+    %legend Tags
+    - @facets[:tags].each_pair do |tag, counter|
+      %label
+        %input{ :type => :checkbox, :value => tag, :name => 'tags[]', :checked => (params[:tags] && params[:tags].include?(tag) ? :checked : nil) }
+        = tag
+        %small= counter
+  %fieldset
+    %legend Matiere
+    - @facets[:matiere].each_pair do |tag, counter|
+      %label
+        %input{ :type => :checkbox, :value => tag, :name => 'matiere', :checked => (params[:matiere] && params[:matiere].include?(tag) ? :checked : nil) }
+        = tag
+        %small= counter
+  %fieldset
+    %legend Dimension
+    - @facets[:dimension].each_pair do |tag, counter|
+      %label
+        %input{ :type => :checkbox, :value => tag, :name => 'dimension', :checked => (params[:dimension] && params[:dimension].include?(tag) ? :checked : nil) }
+        = tag
+        %small= counter
+%p
+  = "#{@articles.total_entries} article(s) trouvé(s) :"
+
+
+    
+#articles
+
+- for article in @articles
+  %h2
+  .box
+    = link_to h(article.id), article
+    %span
+      = article.code_article
+    %h2
+    %span.titre
+      Fabricant: 
+    %span
+      = article.fabricant 
+    %span.titre
+      Prix unitaire:
+    %span
+      = article.prix_unitaire.to_s + " euros par unité"
+    %h2
+    %span.titre
+      Description:
+    %span
+      = article.description
+    %h2
+    %span.titre
+      Information complémentaire:
+    %span
+      = article.description_etendue
+    %h2
+    %span.titre
+      Tags:
+    %span.titre
+      = article.tag_list
+    %h2
+    %span.titre
+      Forme:
+    %span.titre
+      = article.forme_list
+

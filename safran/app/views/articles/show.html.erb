@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fabricant:</b>
+  <%= @article.fabricant %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @article.description %>
+</p>
+
+<p>
+  <b>Code article:</b>
+  <%= @article.code_article %>
+</p>
+
+<p>
+  <b>Prix unitaire:</b>
+  <%= @article.prix_unitaire %>
+</p>
+
+<p>
+  <b>Quantite max:</b>
+  <%= @article.quantite_max %>
+</p>
+
+<p>
+  <b>Date expiration:</b>
+  <%= @article.date_expiration %>
+</p>
+
+<p>
+  <b>Description etendue:</b>
+  <%= @article.description_etendue %>
+</p>
+
+<p>
+  <b>Code fournisseur snecma:</b>
+  <%= @article.code_fournisseur_societe %>
+</p>
+
+<p>
+  <b>Unite achat:</b>
+  <%= @article.unite_achat %>
+</p>
+
+<p>
+  <b>Famille:</b>
+  <%= @article.famille %>
+</p>
+
+<p>
+  <b>Sous famille:</b>
+  <%= @article.code_commodite %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @article.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

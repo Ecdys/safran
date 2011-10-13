@@ -1,0 +1,78 @@
+= form_tag articles_path, :method => :get do
+  %fieldset
+    = text_field_tag :q, params[:q], :id => nil, :placeholder => "Rechercher un article ..."
+  
+  %fieldset
+    - [:general, :forme, :couleur, :matiere, :dimension].each do |scope|
+      - if @tags[scope] && @tags[scope].any?
+        %p= scope.to_s
+        %ul
+          - @tags[scope].each do |tag|
+            %label
+              = check_box_tag 'tags[]', tag.id, params[:tags] && params[:tags].include?(tag.id.to_s)
+              = tag.name
+
+  %fieldset
+    %legend Fabricants
+    %ul
+      - @fabricants.each do |fab|
+        %label
+          = check_box_tag 'fabricants[]', fab, params[:fabricants] && params[:fabricants].include?(fab.to_s)
+          = fab  
+          
+
+  %p
+    = submit_tag "Filtrer"
+%p
+  = "#{@articles.total_entries} article(s) trouvé(s) :"
+
+
+    
+#articles
+
+- for article in @articles
+  %h2
+  .box
+    = link_to h(article.id), article
+    %span
+      = article.code_article
+    %h2
+    %span.titre
+      Fabricant: 
+    %span
+      = article.fabricant 
+    %span.titre
+      Prix unitaire:
+    %span
+      = article.prix_unitaire.to_s + " euros par unité"
+    %h2
+    %span.titre
+      Description:
+    %span
+      = article.description
+    %h2
+    %span.titre
+      Information complémentaire:
+    %span
+      = article.description_etendue
+    %h2
+    %span.titre
+      Général:
+    %span.tags
+      = article.general_list
+    %h2
+    %span.titre
+      Couleur:
+    %span.tags
+      = article.couleur_list
+    %h2
+    %span.titre
+      Matière:
+    %span.tags
+      = article.matiere_list
+    %h2
+    %span.titre
+      Dimension:
+    %span.tags
+      = article.dimension_list
+

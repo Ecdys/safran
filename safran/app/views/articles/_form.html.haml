@@ -1,0 +1,31 @@
+= simple_form_for(@article) do |f| 
+  - if @article.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@article.errors.count, "error")
+        prohibited this article from being saved:
+      %ul
+        - @article.errors.full_messages.each do |msg|
+          %li
+            = msg
+
+  .field
+    = f.input :fabricant
+    = f.input :description 
+    = f.input :code_article 
+    = f.input :prix_unitaire 
+    = f.input :quantite_max 
+    = f.input :date_expiration 
+    = f.input :description_etendue 
+    = f.input :code_fournisseur_societe
+    = f.input :unite_achat 
+    = f.input :famille
+    = f.input :code_commodite 
+    = f.input :image 
+    = f.input :general_list
+    = f.input :couleur_list
+    = f.input :matiere_list
+    = f.input :dimension_list
+    
+  .actions
+    = f.submit 

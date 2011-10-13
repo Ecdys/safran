@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fabricant: MyString
+  description: MyString
+  code_article: MyString
+  prix_unitaire: 1.5
+  quantite_max: 1
+  date_expiration: 2011-10-10
+  description_etendue: MyString
+  code_fournisseur_snecma: MyString
+  unite_achat: MyString
+  famille: MyString
+  sous_famille: MyString
+  image: MyString
+
+two:
+  fabricant: MyString
+  description: MyString
+  code_article: MyString
+  prix_unitaire: 1.5
+  quantite_max: 1
+  date_expiration: 2011-10-10
+  description_etendue: MyString
+  code_fournisseur_snecma: MyString
+  unite_achat: MyString
+  famille: MyString
+  sous_famille: MyString
+  image: MyString
