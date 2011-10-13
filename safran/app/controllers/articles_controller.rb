@@ -10,7 +10,8 @@ class ArticlesController < ApplicationController
     @facets = Article.facets params[:q], :with => with
 
     with[:tags] = params[:tags] if params[:tags]
-
+    with[:fabricant] = params[:fabricant] if params[:fabricant]
+    
     @articles = Article.search params[:q], :with => with, :order => :prix_unitaire
     @articles_ids = Article.search_for_ids params[:q], :with => with, :limit => @articles.total_entries
 
@@ -22,7 +23,7 @@ class ArticlesController < ApplicationController
       :matiere => taggings.map{|tagging| tagging.tag if tagging.context == 'matiere' }.compact.uniq
     }
     
-    @fabricants = @facets[:fabricant].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
+    # @fabricants = @facets[:fabricant].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
        
     respond_to do |format|
       format.html # index.html.erb

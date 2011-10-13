@@ -14,12 +14,8 @@
 
   %fieldset
     %legend Fabricants
-    %ul
-      - @fabricants.each do |fab|
-        %label
-          = check_box_tag 'fabricants[]', fab, params[:fabricants] && params[:fabricants].include?(fab.to_s)
-          = fab  
-          
+    = @fabricants
+
 
   %p
     = submit_tag "Filtrer"
