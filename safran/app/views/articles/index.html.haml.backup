@@ -39,6 +39,14 @@
         %input{ :type => :checkbox, :value => tag, :name => 'dimension', :checked => (params[:dimension] && params[:dimension].include?(tag) ? :checked : nil) }
         = tag
         %small= counter
+
+  %fieldset
+    - @facets.each do |facet, facet_options|
+      %h5= facet
+      %ul
+        - facet_options.each do |option, count|
+          %li
+            = link_to "#{option} (#{count})", :params => {facet => option, :page => 1}
 %p
   = "#{@articles.total_entries} article(s) trouvé(s) :"
 

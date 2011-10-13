@@ -1,16 +1,16 @@
 // Place all the styles related to the Articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@mixin rounded-top($color, $top, $right, $font_size, $backgound_color) {
+@mixin rounded-top($color, $top, $right, $font_size) {
 
 	right: $right;
-	width: 960px;
+	width: 560px;
 	color: $color;
 	display: block;
 	font-size: $font_size;
 	text-align: left;
 	padding: 3px;
-	background-color: $backgound_color;
+
 	top: $top;
 	border-radius: 8px; 
 	border: thin solid #919191; 
@@ -23,5 +23,9 @@
 	color: green;
 }
 .box {
-	@include rounded-top(#000, 6px, 10px, 120%, #FFF);
+
+}
+#bandeau_gauche {
+background-color: #FFF;
+color: #000;	
 }

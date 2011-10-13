@@ -1,74 +1,85 @@
-= form_tag articles_path, :method => :get do
-  %fieldset
-    = text_field_tag :q, params[:q], :id => nil, :placeholder => "Rechercher un article ..."
+.span-10#bandeau_gauche     
+  = form_tag articles_path, :method => :get do
+    %fieldset
+      %legend Nom et Description
+      = text_field_tag :q, params[:q], :id => nil, :placeholder => "Rechercher un article ...", :size => 64
+      = submit_tag "Filtrer"
   
-  %fieldset
+    
     - [:general, :forme, :couleur, :matiere, :dimension].each do |scope|
       - if @tags[scope] && @tags[scope].any?
-        %p= scope.to_s
-        %ul
-          - @tags[scope].each do |tag|
-            %label
-              = check_box_tag 'tags[]', tag.id, params[:tags] && params[:tags].include?(tag.id.to_s)
-              = tag.name
+        %fieldset
+          %legend= scope.to_s
+          %ul
+            - @tags[scope].each do |tag|
+              %label1
+                = check_box_tag 'tags[]', tag.id, params[:tags] && params[:tags].include?(tag.id.to_s)
+                = tag.name
 
-  %fieldset
-    %legend Fabricants
-    = @fabricants
+    %fieldset
+      %legend Fabricants
+      - @fabricants.each do |fab|
+        %label1
+          = check_box_tag 'fabricant', fab, params[:fabricant] && params[:fabricant].include?(fab)
+          = fab
+      
+  
 
-
+.span-12#bandeau_droit       
   %p
-    = submit_tag "Filtrer"
-%p
-  = "#{@articles.total_entries} article(s) trouvé(s) :"
+    = "#{@articles.total_entries} article(s) trouvé(s) :"
 
 
     
-#articles
+  #articles
 
-- for article in @articles
-  %h2
-  .box
-    = link_to h(article.id), article
-    %span
-      = article.code_article
+  - for article in @articles
     %h2
-    %span.titre
-      Fabricant: 
-    %span
-      = article.fabricant 
-    %span.titre
-      Prix unitaire:
-    %span
-      = article.prix_unitaire.to_s + " euros par unité"
-    %h2
-    %span.titre
-      Description:
-    %span
-      = article.description
-    %h2
-    %span.titre
-      Information complémentaire:
-    %span
-      = article.description_etendue
-    %h2
-    %span.titre
-      Général:
-    %span.tags
-      = article.general_list
-    %h2
-    %span.titre
-      Couleur:
-    %span.tags
-      = article.couleur_list
-    %h2
-    %span.titre
-      Matière:
-    %span.tags
-      = article.matiere_list
-    %h2
-    %span.titre
-      Dimension:
-    %span.tags
-      = article.dimension_list
+    .box
+      = form_tag tagify_path(article.id) do
+        
+        = link_to h(article.id), article
+        
+        %span
+          = article.code_article
+        = submit_tag "tagguer"
+        %h2
+        %span.titre
+          Fabricant: 
+        %span
+          = article.fabricant 
+        %span.titre
+          Prix unitaire:
+        %span
+          = article.prix_unitaire.to_s + " euros par unité"
+        %h2
+        %span.titre
+          Description:
+        %span
+          = article.description
+        %h2
+        %span.titre
+          Information complémentaire:
+        %span
+          = article.description_etendue
+        %h2
+        %span.titre
+          Général:
+        %span.tags
+          = article.general_list
+        %h2
+        %span.titre
+          Couleur:
+        %span.tags
+          = article.couleur_list
+        %h2
+        %span.titre
+          Matière:
+        %span.tags
+          = article.matiere_list
+        %h2
+        %span.titre
+          Dimension:
+        %span.tags
+          = article.dimension_list
 

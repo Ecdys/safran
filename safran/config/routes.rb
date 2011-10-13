@@ -1,5 +1,6 @@
 Safran::Application.routes.draw do
   resources :articles
+  match 'articles/tagify/:id'  => 'articles#tagify', :as => :tagify
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
