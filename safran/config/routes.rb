@@ -1,4 +1,10 @@
 Safran::Application.routes.draw do
+  resources :matieres
+
+  resources :couleurs
+
+  resources :generals
+
   resources :articles
   match 'articles/tagify/:id'  => 'articles#tagify', :as => :tagify
   match 'truncate'  => 'articles#truncate'

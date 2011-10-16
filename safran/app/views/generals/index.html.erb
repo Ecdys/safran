@@ -1,0 +1,23 @@
+<h1>Listing generals</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @generals.each do |general| %>
+  <tr>
+    <td><%= general.name %></td>
+    <td><%= link_to 'Show', general %></td>
+    <td><%= link_to 'Edit', edit_general_path(general) %></td>
+    <td><%= link_to 'Destroy', general, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New General', new_general_path %>
