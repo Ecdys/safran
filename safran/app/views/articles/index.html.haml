@@ -28,6 +28,9 @@
 .span-12#bandeau_droit       
   %p
     = "#{@articles.total_entries} article(s) trouvé(s) :"
+    %p
+    = "Ecart de prix entremin et max : #{number_to_currency(@articles.last.prix_unitaire - @articles.first.prix_unitaire, :unit => "€")} "
+  
 
   %hr
   Les 3 article(s) trouvé(s) les moins chers:"
