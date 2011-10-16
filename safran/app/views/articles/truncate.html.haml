@@ -1,0 +1,27 @@
+%h1
+- keywords = ["Armoire", "Rondelle", "Ecrou", "Cable", "Antivol", "Chrome", "Gaine", "Cadenas", "Tapis", "Balayeuse", "Table", "Transpalette", "Balai", "Franges", "Seaux", "Poids", "Brosse", "Semelle", "Chariot", "Aspirateur", "Poteaux", "Detecteur", "Interrupteur", "Chasse", "Tube", "Ampoules", "Lampe", "Capsules", "Dalles", "Escabeau", "Escalier", "Passerelle", "Rampe", "Cylindre", "Cremone", "Raccord", "Femelle", "Male", "Gaine","Collier", "Profil", "Flexible", "Rouleau", "Eponges", "Vis", "Siphon", "Conteneur", "Mitigeur", "Poubelle", "Support", "Elingue", "Roulette", "Batterie", "Echafaudage", "Plateaux", "Plateforme", "Corbeilles", "Corbeille", "Roue", "Bouton", "Charnieres", "Poignee"]
+- matiere = ["Acier", "Polyamide", "Plastique", "Polypro", "Polyethylene","Pochettes", "Métal" , "Sabot", "Caoutchouc", "Verre", "Elastomere", "Bois", "Tissus", "Alu", "Aluminium", "Zinc", "Gavanise", "Polypropylene", "Polypro", "Xenon", "Tek", "Verre"]
+- couleur = ["Brun", "Gris", "Rouge", "Bleu", "Vert", "Noir", "Blanc", "Jaune", "Marron", "Transparent", "Bichromate"]
+- words = Array.new
+
+- @articles.each do |article|
+  = article.description
+  - text = article.description + article.description_etendue
+  - words = text.split(/[^a-zA-Z]/) 
+  - words_capital =[]
+  - words.each do |w|
+    - words_capital << w.capitalize
+   
+  - general_inter = words_capital & keywords
+  - matiere_inter = words_capital & matiere
+  - couleur_inter = words_capital & couleur
+  - if not general_inter.nil?
+    - tags = (general_inter + article.general_list).join(",")
+    - article.general_list =  tags
+  - if not matiere_inter.nil?
+    - tags = (matiere_inter + article.matiere_list).join(",")
+    - article.matiere_list =  tags
+  - if not couleur_inter.nil?
+    - tags = (couleur_inter + article.couleur_list).join(",")
+    - article.couleur_list =  tags
+  - article.save

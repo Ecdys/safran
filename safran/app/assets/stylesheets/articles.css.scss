@@ -29,3 +29,69 @@
 background-color: #FFF;
 color: #000;	
 }
+
+
+
+.tag-triangle {
+border-color:transparent #4AA02C transparent transparent;
+border-style:solid;
+border-width:10px;
+width:0;
+height:0;
+float:left;
+}
+.tag-rectangle {
+background-color:#4AA02C;
+width:80px;
+height:20px;
+display:inline;
+float:right;
+}
+.tag-triangle-red {
+border-color:transparent #FF0000 transparent transparent;
+border-style:solid;
+border-width:10px;
+width:0;
+height:0;
+float:left;
+}
+.tag-rectangle-red {
+background-color:#FF0000;
+width:80px;
+height:20px;
+display:inline;
+float:right;
+}
+
+$side: top;
+$radius: 10px;
+
+.hole {
+width: 4px;
+height: 4px;
+-webkit-border-radius: $radius;
+-moz-border-radius: $radius;
+border-radius: 10px;
+background-color:#E7E9EB;
+position: absolute;
+left: 14px;
+top: 8px;
+}
+
+.tag-rectangle h1 {
+text-align: center;
+font-size: 12px;
+color: #FFF8C6;
+margin: 5.36px 0; /* you may don't need this; this is to fix against my blog css */
+line-height: 9.3px; /* you may don't need this; this is to fix against my blog css */
+}
+
+.tag-rectangle-red h1 {
+text-align: center;
+font-size: 12px;
+color: #FFF8C6;
+margin: 5.36px 0; /* you may don't need this; this is to fix against my blog css */
+line-height: 9.3px; /* you may don't need this; this is to fix against my blog css */
+}
+
+

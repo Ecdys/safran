@@ -23,6 +23,7 @@ gem 'thinking-sphinx',
   :branch  => 'rails3'
 gem 'acts-as-taggable-on'
 gem 'simple_form'
+gem 'gritter'
 
 # Use unicorn as the web server
 # gem 'unicorn'

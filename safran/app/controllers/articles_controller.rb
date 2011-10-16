@@ -3,18 +3,18 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
 
+    keywords = ["armoire", "Rondelle", "Ecrou", "Cable", "Antivol", "Chrome", "Gaine", "Cadenas"]
     
     with = { }
-
-    @facets = Article.facets params[:q], :with => with
-
+    
     with[:tags] = params[:tags] if params[:tags]
-
-    # :with => {:author_facet => 'Sherlock Holmes'.to_crc32}
     with[:fabricant_facet] = params[:fabricant].to_crc32 if params[:fabricant]
+    @facets = Article.facets params[:q], :with => with
     
     @articles = Article.search params[:q], :with => with, :order => :prix_unitaire
     @articles_ids = Article.search_for_ids params[:q], :with => with, :limit => @articles.total_entries
+    
+
 
     taggings = Tagging.find @facets[:taggings].map{|t| t[0] unless t[0] == 0 }.compact.uniq, :include => :tag
     @tags = {
@@ -31,19 +31,27 @@ class ArticlesController < ApplicationController
       format.json { render json: @articles }
     end
   end
-
+  
+  def truncate
+     
+     @articles = Article.find(:all, :limit => 2000)
+     
+  end
+   
   # GET /articles/1
   # GET /articles/1.json
   def tagify
     @article = Article.find(params[:id]) 
-    @article.general_list = "awesome, slick, hefty"  
+    @article.general_list = @article.general_list.join(",") + params[:tag] 
     respond_to do |format|
       if @article.save
         format.html { redirect_to article_path, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

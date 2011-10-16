@@ -29,57 +29,83 @@
   %p
     = "#{@articles.total_entries} article(s) trouvé(s) :"
 
-
+  %hr
+  Les 3 article(s) trouvé(s) les moins chers:"
     
   #articles
-
+  - i = 0
   - for article in @articles
-    %h2
-    .box
-      = form_tag tagify_path(article.id) do
+    - i += 1
+    - if i <= 3
+      .box
+        = form_tag tagify_path(article.id) , :remote => true do |f|
         
-        = link_to h(article.id), article
+          = link_to h(article.id), article
+          = text_field_tag 'tag'
         
+  
+          %span
+            = article.code_article
+          = submit_tag "tagguer"
+
+
+          %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
+            .tag-triangle
+            .hole
+            .tag-rectangle
+              %h1
+                = "€ " + article.prix_unitaire.to_s 
+
+
+          %h2
+          %span.titre
+            Fabricant: 
+          %span
+            = article.fabricant 
+          %span.titre
+            Description:
+          %span
+            = article.description
+          %h2
+          %span.titre
+            Information complémentaire:
+          %span
+            = article.description_etendue
+          %h2
+          %span.titre
+            Général:
+          %span.tags
+            = article.general_list
+          %h2
+          %span.titre
+            Couleur:
+          %span.tags
+            = article.couleur_list
+          %h2
+          %span.titre
+            Matière:
+          %span.tags
+            = article.matiere_list
+          %h2
+          %span.titre
+            Dimension:
+          %span.tags
+            = article.dimension_list
+    - else
+      .box
         %span
           = article.code_article
-        = submit_tag "tagguer"
-        %h2
         %span.titre
           Fabricant: 
         %span
-          = article.fabricant 
+          = article.fabricant
         %span.titre
-          Prix unitaire:
-        %span
-          = article.prix_unitaire.to_s + " euros par unité"
-        %h2
-        %span.titre
-          Description:
-        %span
-          = article.description
-        %h2
-        %span.titre
-          Information complémentaire:
-        %span
-          = article.description_etendue
-        %h2
-        %span.titre
-          Général:
-        %span.tags
-          = article.general_list
-        %h2
-        %span.titre
-          Couleur:
-        %span.tags
-          = article.couleur_list
-        %h2
-        %span.titre
-          Matière:
-        %span.tags
-          = article.matiere_list
-        %h2
-        %span.titre
-          Dimension:
-        %span.tags
-          = article.dimension_list
+          Prix unitaire: 
+        %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
+          .tag-triangle-red
+          .hole
+          .tag-rectangle-red
+            %h1
+              = "€ " + article.prix_unitaire.to_s
+    
 
