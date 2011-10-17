@@ -4,6 +4,15 @@
       %legend Nom et Description
       = text_field_tag :q, params[:q], :id => nil, :placeholder => "Rechercher un article ...", :size => 64
       = submit_tag "Filtrer"
+      
+    %fieldset
+      %legend Distributeur
+      - @distributeurs.each do |distri|
+        %label1
+          = check_box_tag 'distributeur', distri, params[:distributeur] && params[:distributeur].include?(distri)
+          = distri
+
+         
   
     
     - [:general, :forme, :couleur, :matiere, :dimension].each do |scope|
@@ -29,86 +38,71 @@
   %p
     = "#{@articles.total_entries} article(s) trouvé(s) :"
     %p
-    = "Ecart de prix entremin et max : #{number_to_currency(@articles.last.prix_unitaire - @articles.first.prix_unitaire, :unit => "€")} "
+    = "Ecart de prix entre min et max : #{number_to_currency(@articles.last.prix_unitaire - @articles.first.prix_unitaire, :unit => "€")} "
   
 
   %hr
-  Les 3 article(s) trouvé(s) les moins chers:"
-    
+     
   #articles
   - i = 0
   - for article in @articles
-    - i += 1
-    - if i <= 3
-      .box
-        = form_tag tagify_path(article.id) , :remote => true do |f|
-        
-          = link_to h(article.id), article
-          = text_field_tag 'tag'
-        
-  
-          %span
-            = article.code_article
-          = submit_tag "tagguer"
+    .box
+      = form_tag tagify_path(article.id) , :remote => true do |f|
+      
+        = link_to h(article.id), article
 
-
-          %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
-            .tag-triangle
-            .hole
-            .tag-rectangle
-              %h1
-                = "€ " + article.prix_unitaire.to_s 
-
-
-          %h2
-          %span.titre
-            Fabricant: 
-          %span
-            = article.fabricant 
-          %span.titre
-            Description:
-          %span
-            = article.description
-          %h2
-          %span.titre
-            Information complémentaire:
-          %span
-            = article.description_etendue
-          %h2
-          %span.titre
-            Général:
-          %span.tags
-            = article.general_list
-          %h2
-          %span.titre
-            Couleur:
-          %span.tags
-            = article.couleur_list
-          %h2
-          %span.titre
-            Matière:
-          %span.tags
-            = article.matiere_list
-          %h2
-          %span.titre
-            Dimension:
-          %span.tags
-            = article.dimension_list
-    - else
-      .box
         %span
           = article.code_article
+
+        %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
+          .tag-triangle
+          .hole
+          .tag-rectangle
+            %h1
+              = "€ " + article.prix_unitaire.to_s 
+
+
+        %h2
         %span.titre
           Fabricant: 
         %span
-          = article.fabricant
+          = article.fabricant 
         %span.titre
-          Prix unitaire: 
-        %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
-          .tag-triangle-red
-          .hole
-          .tag-rectangle-red
-            %h1
-              = "€ " + article.prix_unitaire.to_s
-    
-
+          Description:
+        %span
+          = article.description
+        %h2
+        %span.titre
+          Information complémentaire:
+        %span
+          = article.description_etendue
+        %h1
+        %a{:class => "afficher"} Afficher/Masquer les tags
+        .hidden_box{:style => "display:none;"}
+          %h3
+          %hr
+          %span.titre2
+            Général:
+          %span.tags
+            = text_field_tag 'tag_general'
+            = article.general_list
+          %h2
+          %span.titre2
+            Couleur:
+          %span.tags
+            = text_field_tag 'tag_couleur'  
+            = article.couleur_list
+          %h2
+          %span.titre2
+            Matière:
+          %span.tags
+            = text_field_tag 'tag_matiere'  
+            = article.matiere_list
+          %h2
+          %span.titre2
+            Dimension:
+          %span.tags
+            = text_field_tag 'tag_dimension'    
+            = article.dimension_list
+          %p
+          = submit_tag "tagguer"

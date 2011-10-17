@@ -3,10 +3,10 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
 
-    keywords = ["armoire", "Rondelle", "Ecrou", "Cable", "Antivol", "Chrome", "Gaine", "Cadenas"]
-    
+        
     with = { }
     
+    with[:distributeur] = params[:distributeur] if params[:distributeur] == 1
     with[:tags] = params[:tags] if params[:tags]
     with[:fabricant_facet] = params[:fabricant].to_crc32 if params[:fabricant]
     @facets = Article.facets params[:q], :with => with
@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
     }
     
     @fabricants = @facets[:fabricant].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
+    @distributeurs = @facets[:distributeur].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
        
     respond_to do |format|
       format.html # index.html.erb
@@ -34,7 +35,8 @@ class ArticlesController < ApplicationController
   
   def truncate
      
-     @articles = Article.find(:all, :limit => 2000)
+     # @articles = Article.find(:all, :limit => 2000)
+     @articles = Article.all
      
   end
    
@@ -42,7 +44,10 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def tagify
     @article = Article.find(params[:id]) 
-    @article.general_list = @article.general_list.join(",") + params[:tag] 
+    @article.general_list = @article.general_list.join(",") + "," + params[:tag_general] 
+    @article.matiere_list = @article.matiere_list.join(",") + "," + params[:tag_matiere] 
+    @article.couleur_list = @article.couleur_list.join(",") + "," + params[:tag_couleur] 
+    @article.dimension_list = @article.dimension_list.join(",") + "," + params[:tag_dimension] 
     respond_to do |format|
       if @article.save
         format.html { redirect_to article_path, notice: 'Article was successfully created.' }

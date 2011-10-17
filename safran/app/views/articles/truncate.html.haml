@@ -1,4 +1,6 @@
 %h1
+- source = "àâçèéêîôùû"
+- dest= "aaceeeiouu"
 - general = Array.new
 - matiere = Array.new
 - couleur = Array.new
@@ -19,7 +21,7 @@
 
 - @articles.each do |article|
   
-  - text = article.description + " " + article.description_etendue
+  - text = (article.description + " " + article.description_etendue).tr(source, dest)
   - words = text.scan(/\w+/) 
   - words.each do |w|
     - w.capitalize!
@@ -33,4 +35,5 @@
   - article.matiere_list =  (matiere_inter + article.matiere_list).join(",")
   - article.couleur_list =  (couleur_inter + article.couleur_list).join(",")
 
-  - article.save
+  - article.save!
+Génération de mots clés terminée avec succès !

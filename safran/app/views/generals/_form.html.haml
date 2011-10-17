@@ -1,0 +1,20 @@
+= simple_form_for(@general) do |f| 
+  - if @general.errors.any? 
+    #error_explanation
+      %h2
+        = pluralize(@general.errors.count, "error")
+        prohibited this general from being saved:
+
+      %ul
+        - @general.errors.full_messages.each do |msg|
+          %li
+            = msg 
+  .field
+    = f.input :name
+    = f.input :keyword , :label => "Mot clé"
+
+
+  .actions
+    = f.submit 
+    
+    

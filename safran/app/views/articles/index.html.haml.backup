@@ -1,3 +1,7 @@
+- keywords = ["Armoire", "Rondelle", "Ecrou", "Cable", "Antivol", "Chrome", "Gaine", "Cadenas", "Tapis", "Balayeuse", "Table", "Transpalette", "Balai", "Franges", "Seaux", "Poids", "Brosse", "Semelle", "Chariot", "Aspirateur", "Poteaux", "Detecteur", "Interrupteur", "Chasse", "Tube", "Ampoules", "Lampe", "Capsules", "Dalles", "Escabeau", "Escalier", "Passerelle", "Rampe", "Cylindre", "Cremone", "Raccord", "Femelle", "Male", "Gaine","Collier", "Profil", "Flexible", "Rouleau", "Eponges", "Vis", "Siphon", "Conteneur", "Mitigeur", "Poubelle", "Support", "Elingue", "Roulette", "Batterie", "Echafaudage", "Plateaux", "Plateforme", "Corbeilles", "Corbeille", "Roue", "Bouton", "Charnieres", "Poignee"]
+
+
+
 %h1 Listing des articles
 
 %form{ :method => :get, :action => articles_path }

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
+    <th>Mot clé</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,6 +11,7 @@
 <% @generals.each do |general| %>
   <tr>
     <td><%= general.name %></td>
+    <td><%= general.keyword %></td>
     <td><%= link_to 'Show', general %></td>
     <td><%= link_to 'Edit', edit_general_path(general) %></td>
     <td><%= link_to 'Destroy', general, confirm: 'Are you sure?', method: :delete %></td>
