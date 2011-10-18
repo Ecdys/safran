@@ -46,13 +46,22 @@
   #articles
   - i = 0
   - for article in @articles
-    .box
+
+    - if article.id == @similar
+      - couleur_box = "background-color:#FCFFAF"
+    - else
+      - couleur_box = "background-color:#E5ECF9" 
+
+    .box{:style => couleur_box}
       = form_tag tagify_path(article.id) , :remote => true do |f|
       
         = link_to h(article.id), article
+        
 
         %span
           = article.code_article
+          - params = article.general_list.join(" ")
+          = link_to image_tag("similar.png", :style => "vertical-align: middle"),  {:action => "index", :controller => "articles", :q => params, :similar => article.id }
 
         %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
           .tag-triangle

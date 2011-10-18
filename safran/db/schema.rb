@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017170736) do
+ActiveRecord::Schema.define(:version => 20111018191346) do
 
   create_table "articles", :force => true do |t|
     t.string   "distributeur"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20111017170736) do
     t.datetime "updated_at"
     t.string   "keyword"
   end
+
+  add_index "generals", ["name"], :name => "index_generals_on_name"
 
   create_table "matieres", :force => true do |t|
     t.string   "name"

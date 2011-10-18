@@ -28,12 +28,24 @@
   
    
   - general_inter = words & general
-  - matiere_inter = words & matiere
-  - couleur_inter = words & couleur
+  - general_inter.each_index do |i|
+    - general_inter[i] = General.find_by_name(general_inter[i]).keyword
+  - general_inter = general_inter.uniq
   
-  - article.general_list =  (general_inter + article.general_list).join(",")
-  - article.matiere_list =  (matiere_inter + article.matiere_list).join(",")
-  - article.couleur_list =  (couleur_inter + article.couleur_list).join(",")
+  - matiere_inter = words & matiere
+  - matiere_inter.each_index do |i|
+    - matiere_inter[i] = Matiere.find_by_name(matiere_inter[i]).keyword
+  - matiere_inter = matiere_inter.uniq
+    
+  - couleur_inter = words & couleur
+  - couleur_inter.each_index do |i|
+    - couleur_inter[i] = Couleur.find_by_name(couleur_inter[i]).keyword
+  - couleur_inter = couleur_inter.uniq
+      
+  - article.general_list =  general_inter.join(",")
+  - article.matiere_list =  matiere_inter.join(",")
+  - article.couleur_list =  couleur_inter.join(",")
 
-  - article.save!
+  - article.save
+  
 Génération de mots clés terminée avec succès !

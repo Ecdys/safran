@@ -3,10 +3,10 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
 
-        
+    @similar = params[:similar].to_i
     with = { }
     
-    with[:distributeur] = params[:distributeur] if params[:distributeur] == 1
+    with[:distributeur_facet] = params[:distributeur].to_crc32 if params[:distributeur]
     with[:tags] = params[:tags] if params[:tags]
     with[:fabricant_facet] = params[:fabricant].to_crc32 if params[:fabricant]
     @facets = Article.facets params[:q], :with => with
