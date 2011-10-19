@@ -1,3 +1,5 @@
+- source = "àâçèéêîôùû"
+- dest= "aaceeeiouu"
 .span-10#bandeau_gauche     
   = form_tag articles_path, :method => :get do
     %fieldset
@@ -38,8 +40,13 @@
   %p
     = "#{@articles.total_entries} article(s) trouvé(s) :"
     %p
-    = "Ecart de prix entre min et max : #{number_to_currency(@articles.last.prix_unitaire - @articles.first.prix_unitaire, :unit => "€")} "
-  
+    - if @articles.total_entries > 0
+      - ecart = @articles.last.prix_unitaire - @articles.first.prix_unitaire
+      = "Ecart de prix entre min et max : #{number_to_currency(ecart, :unit => "€")} "
+    %p
+    Cliquer sur 
+    = image_tag("similar.png", :style => "vertical-align: middle")
+    pour voir les articles comparables
 
   %hr
      
@@ -48,7 +55,7 @@
   - for article in @articles
 
     - if article.id == @similar
-      - couleur_box = "background-color:#FCFFAF"
+      - couleur_box = "background-color:#FCFFAF; border: thin solid red; "
     - else
       - couleur_box = "background-color:#E5ECF9" 
 
@@ -60,7 +67,8 @@
 
         %span
           = article.code_article
-          - params = article.general_list.join(" ")
+          - params = article.general_list.join(" ").tr(source, dest)
+          Articles similaires
           = link_to image_tag("similar.png", :style => "vertical-align: middle"),  {:action => "index", :controller => "articles", :q => params, :similar => article.id }
 
         %div{:style => "width:100px; position: relative; left: 320px; top:-20px;"}
@@ -79,12 +87,12 @@
         %span.titre
           Description:
         %span
-          = article.description
+          =  article.excerpts.description.html_safe
         %h2
         %span.titre
           Information complémentaire:
         %span
-          = article.description_etendue
+          = article.excerpts.description_etendue.html_safe
         %h1
         %a{:class => "afficher"} Afficher/Masquer les tags
         .hidden_box{:style => "display:none;"}

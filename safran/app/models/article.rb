@@ -10,8 +10,8 @@ class Article < ActiveRecord::Base
       
       has taggings.tag.id, :as => :tags, :facet => true
       has taggings.id, :as => :taggings, :facet => true
-      has fabricant, :facet => true
-      has distributeur, :as => :distributeur, :facet => true
+      has fabricant, :as => :fabricant_name, :facet => true
+      has distributeur, :as => :distributeur_name, :facet => true
       has prix_unitaire
       
     end

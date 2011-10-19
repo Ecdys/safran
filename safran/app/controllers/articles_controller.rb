@@ -6,9 +6,9 @@ class ArticlesController < ApplicationController
     @similar = params[:similar].to_i
     with = { }
     
-    with[:distributeur_facet] = params[:distributeur].to_crc32 if params[:distributeur]
+    with[:distributeur_name_facet] = params[:distributeur].to_crc32 if params[:distributeur]
     with[:tags] = params[:tags] if params[:tags]
-    with[:fabricant_facet] = params[:fabricant].to_crc32 if params[:fabricant]
+    with[:fabricant_name_facet] = params[:fabricant].to_crc32 if params[:fabricant]
     @facets = Article.facets params[:q], :with => with
     
     @articles = Article.search params[:q], :with => with, :order => :prix_unitaire
@@ -24,8 +24,8 @@ class ArticlesController < ApplicationController
       :matiere => taggings.map{|tagging| tagging.tag if tagging.context == 'matiere' }.compact.uniq
     }
     
-    @fabricants = @facets[:fabricant].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
-    @distributeurs = @facets[:distributeur].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
+    @fabricants = @facets[:fabricant_name].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
+    @distributeurs = @facets[:distributeur_name].map{|l| l[0] unless l[0] == 0 }.compact.uniq  
        
     respond_to do |format|
       format.html # index.html.erb

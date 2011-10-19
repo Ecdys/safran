@@ -24,6 +24,7 @@ gem 'thinking-sphinx',
 gem 'acts-as-taggable-on'
 gem 'simple_form'
 gem 'gritter'
+gem 'RedCloth'
 
 # Use unicorn as the web server
 # gem 'unicorn'
