@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     with[:fabricant_name_facet] = params[:fabricant].to_crc32 if params[:fabricant]
     @facets = Article.facets params[:q], :with => with
     
-    @articles = Article.search params[:q], :with => with, :order => :prix_unitaire
+    @articles = Article.search params[:q], :with => with, :order => :prix_unitaire, :page => params[:page], :per_page => 5
     @articles_ids = Article.search_for_ids params[:q], :with => with, :limit => @articles.total_entries
     
 
