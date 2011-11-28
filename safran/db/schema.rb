@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018191346) do
+ActiveRecord::Schema.define(:version => 20111113135727) do
 
   create_table "articles", :force => true do |t|
     t.string   "distributeur"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20111018191346) do
     t.decimal  "taxe",                     :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "delta",                                                   :default => true, :null => false
   end
 
   create_table "couleurs", :force => true do |t|

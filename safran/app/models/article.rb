@@ -7,13 +7,13 @@ class Article < ActiveRecord::Base
       indexes description_etendue
       indexes fabricant
       indexes distributeur
+      set_property :delta => true
       
       has taggings.tag.id, :as => :tags, :facet => true
       has taggings.id, :as => :taggings, :facet => true
       has fabricant, :as => :fabricant_name, :facet => true
       has distributeur, :as => :distributeur_name, :facet => true
       has prix_unitaire
-      
     end
     
   
