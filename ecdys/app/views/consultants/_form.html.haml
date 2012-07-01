@@ -1,0 +1,18 @@
+= simple_form_for(@consultant) do |f|
+  - if @consultant.errors.any? 
+    %div#error_explanation
+      %h2
+      = pluralize(@consultant.errors.count, "error")
+      prohibited this consultant from being saved:
+
+      %ul
+        - @consultant.errors.full_messages.each do |msg| 
+          %li= msg 
+      
+  %div.field
+  = f.input :first_name, :label => "Prénom"
+  = f.input :last_name, :label => "Nom"
+  = f.input :avatar
+ 
+  %div.actions
+    = f.submit

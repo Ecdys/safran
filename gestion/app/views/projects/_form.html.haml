@@ -1,0 +1,11 @@
+= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.input :client_id
+  = f.input :description
+  = f.input :budget
+  = f.input :discount
+  = f.input :order_number
+  = f.input :manager
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), projects_path, :class => 'btn'

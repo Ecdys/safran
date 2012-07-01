@@ -1,0 +1,15 @@
+%h1= @consultant.first_name + " " + @consultant.last_name
+%p#notice= notice 
+
+%p
+  = image_tag(@consultant.avatar_url) if @consultant.avatar_url
+
+%p
+  %strong Prénom :
+  =@consultant.first_name
+%p
+  %strong Nom :
+  =@consultant.last_name
+%p
+  = link_to 'Edit', edit_consultant_path(@consultant)  |
+  = link_to 'Back', consultants_path 

@@ -1,0 +1,20 @@
+%p#notice= notice 
+
+%p
+  Name:
+  = @project.name
+%p
+  Client:
+  = @project.client.name
+%p
+  Montant:
+  = @project.amount
+%p
+  Date début:
+  = @project.start_date
+%p
+  Date fin:
+  = @project.end_date
+
+!= link_to 'Edit', edit_project_path(@project) |
+!= link_to 'Back', projects_path

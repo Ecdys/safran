@@ -1,0 +1,39 @@
+CksdoBztow4Ei8-lIKFAEjS4M264SvwjpdjzJIVlwyjSKiWq9OEY08i8rtxuY3l4
+secret = -uES6YMkFUa3CmlpJcQLxIxI20semLujYIbLlro72bmb55-XLA3N5np1ou14gv4A
+
+
+pin = '77622'
+
+
+client = LinkedIn::Client.new('CksdoBztow4Ei8-lIKFAEjS4M264SvwjpdjzJIVlwyjSKiWq9OEY08i8rtxuY3l4', '-uES6YMkFUa3CmlpJcQLxIxI20semLujYIbLlro72bmb55-XLA3N5np1ou14gv4A')
+
+
+["dfb6cabd-1cd1-4066-a0f1-6fe34fd720b4", "6822633e-e43b-4b39-ab71-98a87418bac0"] 
+
+
+client.authorize_from_access("dfb6cabd-1cd1-4066-a0f1-6fe34fd720b4", "6822633e-e43b-4b39-ab71-98a87418bac0")
+
+
+=> #<LinkedIn::Mash _count=312 _start=0 all=[#<LinkedIn::Mash api_standard_profile_request=#<LinkedIn::Mash 
+
+headers=#<LinkedIn::Mash all=[#<LinkedIn::Mash name="x-li-auth-token" value="name:60Gh">] total=1> 
+url="http://api.linkedin.com/v1/people/ZZXr_7OzRI"> 
+first_name="Emmanuel" 
+headline="Independent Mediation and Management Consulting Professional" 
+id="ZZXr_7OzRI" 
+industry="Management Consulting" 
+last_name="Ader" 
+location=#<LinkedIn::Mash country=#<LinkedIn::Mash code="fr"> name="Paris Area, France"> picture_url="http://media.linkedin.com/mpr/mprx/0_FJCU17inDnJs3p9t5RXk12CsfPgzTV9t5OnX12tErnWLYY3-w0tBgu6k3jjoGjcY6V85pw2xWAb7" site_standard_profile_request=#<LinkedIn::Mash url="http://www.linkedin.com/profile?viewProfile=&key=5096943&authToken=60Gh&authType=name&trk=api*a136684*s145057*">>, #<LinkedIn::Mash api_standard_profile_request=#<LinkedIn::Mash 
+
+headers=#<LinkedIn::Mash all=[#<LinkedIn::Mash name="x-li-auth-token" value="name:JAJV">] total=1> 
+url="http://api.linkedin.com/v1/people/0GqMWx19Vp"> 
+first_name="René" 
+headline="VP Electronic Manufacturing chez Sagem DS" id="0GqMWx19Vp" industry="Defense & Space" last_name="ALLIOT" location=#<LinkedIn::Mash country=#<LinkedIn::Mash code="fr"> name="Poitiers Area, France"> site_standard_profile_request=#<LinkedIn::Mash url="http://www.linkedin.com/profile?viewProfile=&key=152833173&authToken=JAJV&authType=name&trk=api*a136684*s145057*">>, #<LinkedIn::Mash api_standard_profile_request=#<LinkedIn::Mash headers=#<LinkedIn::Mash all=[#<LinkedIn::Mash name="x-li-auth-token" value="name:A_Sj">] total=1> url="http://api.linkedin.com/v1/people/hpToDuES2S"> first_name="Nathaniel" headline="financial entrepreneur" id="hpToDuES2S" industry="Investment Management" last_name="Amsellem" location=#<LinkedIn::Mash country=#<LinkedIn::Mash code="fr"> name="Paris Area, France"> site_standard_profile_request=#<LinkedIn::Mash url="http://www.linkedin.com/profile?viewProfile=&key=931109&authToken=A_Sj&authType=name&trk=api*a136684*s145057*">>, #<LinkedIn::Mash api_standard_profile_request=#<LinkedIn::Mash 
+
+headers=#<LinkedIn::Mash all=[#<LinkedIn::Mash name="x-li-auth-token" value="name:w8vm">] total=1> 
+url="http://api.linkedin.com/v1/people/I0EB8_uTUf"> 
+first_name="Daniel" 
+headline="CEO at Ivalua Inc" id="I0EB8_uTUf" 
+industry="Computer Software" last_name="Amzallag" location=#<LinkedIn::Mash country=#<LinkedIn::Mash code="us"> 
+name="San Francisco Bay Area"> 
+picture_url="http://media.lin

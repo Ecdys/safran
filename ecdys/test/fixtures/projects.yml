@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  client_id: 1
+  amount: 1.5
+  start_date: 2011-07-24
+  end_date: 2011-07-24
+
+two:
+  name: MyString
+  client_id: 1
+  amount: 1.5
+  start_date: 2011-07-24
+  end_date: 2011-07-24
